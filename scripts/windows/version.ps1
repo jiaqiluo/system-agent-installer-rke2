@@ -9,8 +9,12 @@ $FALLBACK_VERSION = "v1.20.4+rke2r1"
 
 # This version script expects either a tag of format: <rke2-version> or no tag at all.
 $TREE_STATE = "clean"
-$COMMIT = $env:DRONE_COMMIT
+$COMMIT = $env:GITHUB_SHA
 $TAG = $env:DRONE_TAG
+
+if ( $env:GITHUB_REF_TYPE -eq "tag"){
+     $TAG = $env:GITHUB_REF_NAME
+}
 
 if (-not $TAG) {
     if (Test-Path -Path $env:DAPPER_SOURCE\.git) {

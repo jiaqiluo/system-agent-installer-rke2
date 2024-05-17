@@ -35,13 +35,6 @@ jobs:
       - name: Download installer
         run: scripts/download
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: "${{ env.IMAGE }}"
-          tags: "${{ env.VERSION }}-${{ env.OS }}-${{ env.ARCH }}"
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
